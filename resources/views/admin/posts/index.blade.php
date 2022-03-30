@@ -38,10 +38,11 @@
                               <td>{{ $post->title }}</td>
                               <td>
                                  @forelse ($post->tags as $tag)
-                                    <span style="background-color: {{ $tag->color }}"
-                                       class="badge badge-pill text-uppercase">
+                                    <a href="{{ route('admin.tags.index', $tag->id) }}" type="button"
+                                       style="background-color: {{ $tag->color }}"
+                                       class="badge text-white badge-pill text-uppercase">
                                        {{ $tag->name }}
-                                    </span>
+                                    </a>
                                  @empty
                                     <span>- - -</span>
                                  @endforelse
@@ -57,7 +58,7 @@
                                           <i class="fa-solid fa-circle-info"></i>
                                        </a>
                                        {{-- EDIT --}}
-                                       <a class="btn btn-secondary btn-sm"
+                                       <a class="btn btn-warning btn-sm"
                                           href="{{ route('admin.posts.edit', $post->id) }}">
                                           <i class="fa-solid fa-pen-to-square"></i>
                                        </a>

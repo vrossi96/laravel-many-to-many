@@ -121,4 +121,11 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
+
+    // CUSTOM
+
+    public function tagPosts(Tag $tag)
+    {
+        return view('admin.tags.index', compact('tag'));
+    }
 }
