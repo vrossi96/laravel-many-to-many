@@ -8,6 +8,7 @@ use App\Models\Tag;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -98,12 +99,21 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $request->validate([
+            'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:5'],
+            'content' => ['required', 'string'],
+            'img' => ['url', 'nullable'],
+            'category_id' => ['nullable', 'exists:tags,id'],
+        ]);
+
         $data = $request->all();
         $data['slug'] = Str::slug($request->title, '-');
         $post->update($data);
 
         // Prende l'array di id dei tag e li associa
-        if (array_key_exists('tags', $data)) {
+        if (!array_key_exists('tags', $data)) {
+            $post->tags()->detach();
+        } else {
             $post->tags()->sync($data['tags']);
         }
 
