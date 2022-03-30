@@ -45,10 +45,22 @@ class PostController extends Controller
         $data = $request->all();
         $post = new Post();
 
+        $request->validate([
+            'title' => ['required', 'string', 'unique:posts', 'min:5'],
+            'content' => ['required', 'string'],
+            'img' => ['url', 'nullable'],
+            'category_id' => ['nullable', 'exists:tags,id'],
+        ]);
+
         $post->fill($data);
         $post->slug = Str::slug($request->title, '-');
 
         $post->save();
+
+        // Prende l'array di id dei tag e li associa
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->attach($data['tags']);
+        }
 
         return redirect()->route('admin.posts.show', $post);
     }

@@ -7,6 +7,17 @@
             <form action="{{ route('admin.posts.store') }}" method="POST">
       @endif
       @csrf
+      @if ($errors->any())
+         <div class="alert alert-danger">
+            <ul>
+               @foreach ($errors->all() as $error)
+                  <li>
+                     {{ $error }}
+                  </li>
+               @endforeach
+            </ul>
+         </div>
+      @endif
       <div class="row">
          <div class="col-12">
             <div class="form-group">
@@ -32,7 +43,8 @@
             {{-- CHECKBOX TAGS --}}
             <div class="form-check form-check-inline">
                @foreach ($tags as $tag)
-                  <input type="checkbox" class="form-check-input" id="tag-{{ $loop->iteration }}">
+                  <input type="checkbox" class="form-check-input" name="tags[]" id="tag-{{ $loop->iteration }}"
+                     value="{{ $tag->id }}" {{-- @if (in_array($tag->id, old('tags'))) checked @endif --}}>
                   <label class="form-check-label text-capitalize mr-2" for="tag-{{ $loop->iteration }}">
                      {{ $tag->name }}
                   </label>
