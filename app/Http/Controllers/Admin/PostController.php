@@ -84,7 +84,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', compact('post'));
+        $tags = Tag::all();
+        $selected_ids = $post->tags->pluck('id')->toArray();
+        return view('admin.posts.edit', compact('post', 'tags', 'selected_ids'));
     }
 
     /**
@@ -99,6 +101,12 @@ class PostController extends Controller
         $data = $request->all();
         $data['slug'] = Str::slug($request->title, '-');
         $post->update($data);
+
+        // Prende l'array di id dei tag e li associa
+        if (array_key_exists('tags', $data)) {
+            $post->tags()->sync($data['tags']);
+        }
+
         return redirect()->route('admin.posts.show', $post);
     }
 

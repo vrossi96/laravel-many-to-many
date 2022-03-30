@@ -38,7 +38,10 @@
                               <td>{{ $post->title }}</td>
                               <td>
                                  @forelse ($post->tags as $tag)
-                                    <span class="badge badge-pill">{{ $tag->name }}</span>
+                                    <span style="background-color: {{ $tag->color }}"
+                                       class="badge badge-pill text-uppercase">
+                                       {{ $tag->name }}
+                                    </span>
                                  @empty
                                     <span>- - -</span>
                                  @endforelse
