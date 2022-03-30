@@ -14,8 +14,16 @@
                      <span>{{ $post->title }}</span>
                      <sup class="badge badge-pill badge-info"> ID: {{ $post->id }}</sup>
                   </h3>
-                  <h4>{{ $post->slug }}</h4>
-                  <p class="card-text">{{ $post->content }}</p>
+                  <h4>Post slug: {{ $post->slug }}</h4>
+                  <p class="card-text"><strong>Content:</strong> {{ $post->content }}</p>
+                  <div>
+                     <div>Tags:</div>
+                     @foreach ($post->tags as $tag)
+                        <span style="background-color: {{ $tag->color }}" class="badge badge-pill text-uppercase">
+                           {{ $tag->name }}
+                        </span>
+                     @endforeach
+                  </div>
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item text-white bg-secondary">Creation: {{ $post->created_at }}</li>
                      <li class="list-group-item text-white bg-secondary">Last update: {{ $post->updated_at }}</li>
