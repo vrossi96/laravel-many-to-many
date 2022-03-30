@@ -10,4 +10,9 @@ class Tag extends Model
         'name',
         'color'
     ];
+
+    public function posts()
+    {
+        return $this->belongsToMany('App\Models\Post');
+    }
 }
