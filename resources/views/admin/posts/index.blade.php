@@ -25,6 +25,7 @@
                         <tr>
                            <th scope="col">ID</th>
                            <th scope="col">Title</th>
+                           <th scope="col">Tags</th>
                            <th scope="col">Slug</th>
                            <th scope="col">Updated at</th>
                            <th scope="col"></th>
@@ -35,6 +36,13 @@
                            <tr>
                               <th scope="row">{{ $post->id }}</th>
                               <td>{{ $post->title }}</td>
+                              <td>
+                                 @forelse ($post->tags as $tag)
+                                    <span class="badge badge-pill">{{ $tag->name }}</span>
+                                 @empty
+                                    <span>- - -</span>
+                                 @endforelse
+                              </td>
                               <td>{{ $post->slug }}</td>
                               <td>{{ $post->updated_at }}</td>
                               <td>
