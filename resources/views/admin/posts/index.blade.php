@@ -57,14 +57,14 @@
                               <td>{{ $post->updated_at }}</td>
                               <td>
                                  <div class="d-flex align-items-center justify-content-between">
-                                    <div>
+                                    <div class="d-flex mr-3">
                                        {{-- DETAILS --}}
-                                       <a class="btn btn-primary btn-sm"
+                                       <a class="btn btn-primary btn-sm mr-2"
                                           href="{{ route('admin.posts.show', $post->id) }}">
                                           <i class="fa-solid fa-circle-info"></i>
                                        </a>
                                        {{-- EDIT --}}
-                                       <a class="btn btn-warning btn-sm"
+                                       <a class="btn btn-secondary btn-sm mr-2"
                                           href="{{ route('admin.posts.edit', $post->id) }}">
                                           <i class="fa-solid fa-pen-to-square"></i>
                                        </a>
