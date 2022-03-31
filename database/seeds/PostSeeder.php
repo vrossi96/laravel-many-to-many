@@ -9,6 +9,7 @@ use Faker\Generator as Faker;
 use App\User;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostSeeder extends Seeder
 {
@@ -24,7 +25,7 @@ class PostSeeder extends Seeder
         // Recupero gli id degli utenti
         $user_ids = User::pluck('id')->toArray();
         // Recupero gli id degli tags
-        $tags_ids = User::pluck('id')->toArray();
+        $tags_ids = Tag::pluck('id')->toArray();
 
         for ($i = 0; $i < 25; $i++) {
             $post = new Post();
