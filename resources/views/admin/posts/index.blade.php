@@ -43,18 +43,20 @@
                               </td>
                               {{-- TAGS --}}
                               <td>
-                                 @forelse ($post->tags as $tag)
-                                    <a href="{{ route('admin.tags.posts', $tag->id) }}" type="button"
-                                       style="background-color: {{ $tag->color }}"
-                                       class="badge text-white badge-pill text-uppercase">
-                                       {{ $tag->name }}
-                                    </a>
-                                 @empty
-                                    <span>- - -</span>
-                                 @endforelse
+                                 <div class="d-flex flex-column align-items-start">
+                                    @forelse ($post->tags as $tag)
+                                       <a href="{{ route('admin.tags.posts', $tag->id) }}" type="button"
+                                          style="background-color: {{ $tag->color }}"
+                                          class="badge text-white badge-pill text-uppercase my-1">
+                                          {{ $tag->name }}
+                                       </a>
+                                    @empty
+                                       <span>- - -</span>
+                                    @endforelse
+                                 </div>
                               </td>
                               <td>{{ $post->slug }}</td>
-                              <td>{{ $post->updated_at }}</td>
+                              <td>{{ $post->itaDate() }}</td>
                               <td>
                                  <div class="d-flex align-items-center justify-content-between">
                                     <div class="d-flex mr-3">
