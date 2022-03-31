@@ -18,6 +18,7 @@
             </ul>
          </div>
       @endif
+      {{-- FORM TITLE POST --}}
       <div class="row">
          <div class="col-12">
             <div class="form-group">
@@ -27,12 +28,14 @@
                <small class="form-text text-muted">Post title</small>
             </div>
          </div>
+         {{-- FORM CONTENT --}}
          <div class="col-12">
             <div class="form-group">
                <label for="content">Content</label>
                <textarea class="w-100" name="content" id="content" rows="9">{{ old('content', $post->content) }}</textarea>
             </div>
          </div>
+         {{-- FORM IMAGE --}}
          <div class="col-12">
             <div class="form-group">
                <label for="img">Image</label>
