@@ -15,7 +15,7 @@ class TagSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $post = new Tag();
             $post->name = $faker->word();
             $post->color = $faker->hexColor();

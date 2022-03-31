@@ -23,6 +23,8 @@ class PostSeeder extends Seeder
         $category_ids = Category::pluck('id')->toArray();
         // Recupero gli id degli utenti
         $user_ids = User::pluck('id')->toArray();
+        // Recupero gli id degli tags
+        $tags_ids = User::pluck('id')->toArray();
 
         for ($i = 0; $i < 25; $i++) {
             $post = new Post();
@@ -35,6 +37,9 @@ class PostSeeder extends Seeder
             // ID USERS
             $post->user_id = Arr::random($user_ids);
             $post->save();
+
+            // FOR MANY TO MANY
+            $post->tags()->attach(Arr::random($tags_ids, Arr::random([1, 2, 3])));
         }
     }
 }
