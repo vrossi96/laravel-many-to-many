@@ -38,7 +38,7 @@
                               <td>{{ $post->title }}</td>
                               <td>
                                  @forelse ($post->tags as $tag)
-                                    <a href="{{ route('admin.tags.index', $tag->id) }}" type="button"
+                                    <a href="{{ route('admin.tags.posts', $tag->id) }}" type="button"
                                        style="background-color: {{ $tag->color }}"
                                        class="badge text-white badge-pill text-uppercase">
                                        {{ $tag->name }}

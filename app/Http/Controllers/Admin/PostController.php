@@ -136,6 +136,6 @@ class PostController extends Controller
 
     public function tagPosts(Tag $tag)
     {
-        return view('admin.tags.index', compact('tag'));
+        return view('admin.tags.posts', compact('tag'));
     }
 }

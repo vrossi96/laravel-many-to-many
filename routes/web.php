@@ -22,9 +22,9 @@ Route::middleware('auth')
     ->namespace('Admin') //prefisso namespace es. Admin\HomeController@index
     ->group(function () {
         Route::get('/', 'HomeController@index')->name('home');
-        Route::resource('posts', 'PostController');
+        Route::get('/tags/{tag}/posts', 'PostController@tagPosts')->name('tags.posts');
 
-        Route::get('/tags/index/{tag}', 'PostController@tagPosts')->name('tags.index');
+        Route::resource('posts', 'PostController');
     });
 
 Route::get('{any?}', function () {
