@@ -25,6 +25,7 @@
                         <tr>
                            <th scope="col">ID</th>
                            <th scope="col">Title</th>
+                           <th scope="col">Category</th>
                            <th scope="col">Tags</th>
                            <th scope="col">Slug</th>
                            <th scope="col">Updated at</th>
@@ -36,6 +37,11 @@
                            <tr>
                               <th scope="row">{{ $post->id }}</th>
                               <td>{{ $post->title }}</td>
+                              <td>
+                                 <span style="background-color: {{ $post->category->color }}"
+                                    class="badge badge-pill text-uppercase">{{ $post->category->name }}</span>
+                              </td>
+                              {{-- TAGS --}}
                               <td>
                                  @forelse ($post->tags as $tag)
                                     <a href="{{ route('admin.tags.posts', $tag->id) }}" type="button"
