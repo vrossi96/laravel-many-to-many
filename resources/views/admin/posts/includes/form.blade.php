@@ -43,6 +43,7 @@
             {{-- CHECKBOX TAGS --}}
             <div class="form-check form-check-inline">
                @foreach ($tags as $tag)
+                  {{-- name="tags[]" da alla request un array di valori --}}
                   <input type="checkbox" class="form-check-input" name="tags[]" id="tag-{{ $loop->iteration }}"
                      value="{{ $tag->id }}" @if (in_array($tag->id, old('tags', $selected_ids ?? []))) checked @endif>
                   <label class="form-check-label text-capitalize mr-2" for="tag-{{ $loop->iteration }}">

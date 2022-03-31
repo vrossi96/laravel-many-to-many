@@ -50,7 +50,7 @@ class PostController extends Controller
             'title' => ['required', 'string', 'unique:posts', 'min:5'],
             'content' => ['required', 'string'],
             'img' => ['url', 'nullable'],
-            'category_id' => ['nullable', 'exists:tags,id'],
+            'tags' => ['nullable', 'exists:tags,id'],
         ]);
 
         $post->fill($data);
@@ -103,7 +103,7 @@ class PostController extends Controller
             'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:5'],
             'content' => ['required', 'string'],
             'img' => ['url', 'nullable'],
-            'category_id' => ['nullable', 'exists:tags,id'],
+            'tags' => ['nullable', 'exists:tags,id'],
         ]);
 
         $data = $request->all();
