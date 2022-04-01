@@ -34,9 +34,9 @@
                         @foreach ($categories as $category)
                            <tr>
                               <th scope="row">{{ $category->id }}</th>
-                              <td>{{ $category->name }}</td>
-                              <td class="text-capitalize">
-                                 <span style="background-color:{{ $category->color }}; color: #fff"
+                              <td class="text-capitalize">{{ $category->name }}</td>
+                              <td>
+                                 <span style="background-color:{{ $category->color }}"
                                     class="badge badge-pill">{{ $category->color }}
                                  </span>
                               </td>

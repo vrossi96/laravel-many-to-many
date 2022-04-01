@@ -10,7 +10,8 @@
                   <h3 class="card-title d-flex justify-content-between">
                      {{ $category->name }}
                   </h3>
-                  <p class="card-text">{{ $category->color }}</p>
+                  <h4 style="background-color: {{ $category->color }}" class="badge badge-pill">{{ $category->color }}
+                  </h4>
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item">Creation: {{ $category->created_at }}</li>
                      <li class="list-group-item">Last update: {{ $category->updated_at }}</li>
