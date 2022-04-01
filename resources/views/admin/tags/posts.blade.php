@@ -6,7 +6,13 @@
          <div class="col-md-12">
             <div class="card">
                <div class="card-header text-white bg-dark">
-                  Tag: <span class="text-capitalize">{{ $tag->name }}</span>
+                  Tag:
+                  <div class="d-flex align-items-start">
+                     <h3 class="text-capitalize">{{ $tag->name }} </h3>
+                     <sup class="badge badge-pill badge-primary mx-2" style="background-color: {{ $tag->color }}">
+                        {{ count($tag->posts) }}
+                     </sup>
+                  </div>
                </div>
                <div class="card-body bg-secondary">
                   <div class="row">
