@@ -58,10 +58,12 @@ class PostController extends Controller
             'tags' => ['nullable', 'exists:tags,id'],
         ]);
 
+        // IMG input
         if (array_key_exists('img', $data)) {
             $img_path = Storage::put('post_images', $data['img']);
             $data['img'] = $img_path;
         }
+
         $data['user_id'] = Auth::id();
 
         // dd($data);
@@ -113,13 +115,23 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', Rule::unique('posts')->ignore($post->id), 'min:5'],
+            'category_id' => ['required', 'exists:categories,id'],
             'content' => ['required', 'string'],
-            'img' => ['url', 'nullable'],
+            'img' => ['image', 'nullable'],
             'tags' => ['nullable', 'exists:tags,id'],
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title, '-');
+
+        // IMG input
+        if (array_key_exists('img', $data)) {
+            if ($post->img) Storage::delete($post->img);
+            $img_path = Storage::put('post_images', $data['img']);
+            $data['img'] = $img_path;
+        }
+
+
         $post->update($data);
 
         // Prende l'array di id dei tag e li associa
@@ -140,6 +152,11 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // Delete relations between the post and tags if they exist.
+        if (count($post->tags)) $post->tags()->detach();
+        // Clear storage from the img of the post
+        if ($post->img) Storage::delete($post->img);
+
         $post->delete();
         return redirect()->route('admin.posts.index');
     }
