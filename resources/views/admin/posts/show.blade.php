@@ -14,16 +14,24 @@
                      <span>{{ $post->title }}</span>
                      <sup class="badge badge-pill badge-info"> ID: {{ $post->id }}</sup>
                   </h3>
+                  {{-- POST SLUG --}}
                   <h4>Post slug: {{ $post->slug }}</h4>
+                  {{-- CATEGORY --}}
+                  <h4 style="background-color: {{ $post->category->color }}" class="badge badge-pill text-uppercase">
+                     {{ $post->category->name }}</h4>
+                  {{-- CONTENT --}}
                   <p class="card-text"><strong>Content:</strong> {{ $post->content }}</p>
+                  {{-- TAGS --}}
                   <div>
                      <div>Tags:</div>
                      @foreach ($post->tags as $tag)
-                        <span style="background-color: {{ $tag->color }}" class="badge badge-pill text-uppercase">
+                        <a href="{{ route('admin.tags.posts', $tag->id) }}" style="background-color: {{ $tag->color }}"
+                           class="badge badge-pill text-uppercase">
                            {{ $tag->name }}
-                        </span>
+                        </a>
                      @endforeach
                   </div>
+                  {{-- DATES --}}
                   <ul class="list-group list-group-flush">
                      <li class="list-group-item text-white bg-secondary">Creation: {{ $post->created_at }}</li>
                      <li class="list-group-item text-white bg-secondary">Last update: {{ $post->updated_at }}</li>

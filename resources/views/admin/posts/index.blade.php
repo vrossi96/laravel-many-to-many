@@ -47,7 +47,7 @@
                                     @forelse ($post->tags as $tag)
                                        <a href="{{ route('admin.tags.posts', $tag->id) }}" type="button"
                                           style="background-color: {{ $tag->color }}"
-                                          class="badge text-white badge-pill text-uppercase my-1">
+                                          class="badge badge-pill text-uppercase my-1">
                                           {{ $tag->name }}
                                        </a>
                                     @empty

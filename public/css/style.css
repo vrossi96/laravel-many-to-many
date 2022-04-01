@@ -1,3 +1,7 @@
 header .active {
   border-bottom: 3px solid #fff;
 }
+
+.badge.badge-pill {
+  color: #000;
+}
