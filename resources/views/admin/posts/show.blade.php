@@ -7,7 +7,8 @@
             <div class="card border-dark">
                <div class="card-header text-white bg-dark">Manage post</div>
                @if ($post->img)
-                  <img class="card-img-top" src="{{ $post->img }}" alt="Post Img">
+                  <img class="card-img-top" src="{{ asset('storage/post_images' . $post->img) }}"
+                     alt="{{ $post->slug }}">
                @endif
                <div class="card-body text-white bg-secondary">
                   <h3 class="card-title d-flex justify-content-between">

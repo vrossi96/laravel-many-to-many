@@ -1,10 +1,10 @@
 <div class="card">
    <div class="card-body">
       @if ($post->exists)
-         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+         <form action="{{ route('admin.posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
          @else
-            <form action="{{ route('admin.posts.store') }}" method="POST">
+            <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
       @endif
       @csrf
       @if ($errors->any())
@@ -20,12 +20,26 @@
       @endif
       {{-- FORM TITLE POST --}}
       <div class="row">
-         <div class="col-12">
+         <div class="col-10">
             <div class="form-group">
                <label for="title">Title</label>
                <input name="title" type="text" class="form-control" id="title" placeholder="Enter title"
                   value="{{ old('title', $post->title) }}">
                <small class="form-text text-muted">Post title</small>
+            </div>
+         </div>
+         {{-- FORM CATEGORY --}}
+         <div class="col-2">
+            <div class="form-group">
+               <label for="category">Category</label>
+               <select class="custom-select" name="category_id" id="category">
+                  <option value>Select a category</option>
+                  @foreach ($categories as $category)
+                     <option class="text-capitalize" value="{{ $category->id }}"
+                        @if (old('category_id', $post->category_id) === $category->id) selected @endif>{{ $category->name }}
+                     </option>
+                  @endforeach
+               </select>
             </div>
          </div>
          {{-- FORM CONTENT --}}
@@ -39,7 +53,7 @@
          <div class="col-12">
             <div class="form-group">
                <label for="img">Image</label>
-               <input class="w-100" type="text" name="img" id="img" value="{{ old('img', $post->img) }}">
+               <input class="d-block" type="file" name="img" id="img">
             </div>
          </div>
          <div class="col-12">

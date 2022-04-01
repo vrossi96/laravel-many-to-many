@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -30,9 +33,10 @@ class PostController extends Controller
      */
     public function create()
     {
+        $categories = Category::all();
         $post = new Post();
         $tags = Tag::all();
-        return view('admin.posts.create', compact('post', 'tags'));
+        return view('admin.posts.create', compact('post', 'tags', 'categories'));
     }
 
     /**
@@ -48,16 +52,23 @@ class PostController extends Controller
 
         $request->validate([
             'title' => ['required', 'string', 'unique:posts', 'min:5'],
+            'category_id' => ['required', 'exists:categories,id'],
             'content' => ['required', 'string'],
-            'img' => ['url', 'nullable'],
+            'img' => ['image', 'nullable'],
             'tags' => ['nullable', 'exists:tags,id'],
         ]);
 
+        if (array_key_exists('img', $data)) {
+            $img_path = Storage::put('post_images', $data['img']);
+            $data['img'] = $img_path;
+        }
+        $data['user_id'] = Auth::id();
+
+        // dd($data);
         $post->fill($data);
         $post->slug = Str::slug($request->title, '-');
 
         $post->save();
-
         // Prende l'array di id dei tag e li associa
         if (array_key_exists('tags', $data)) {
             $post->tags()->attach($data['tags']);
@@ -85,9 +96,10 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $categories = Category::all();
         $tags = Tag::all();
         $selected_ids = $post->tags->pluck('id')->toArray();
-        return view('admin.posts.edit', compact('post', 'tags', 'selected_ids'));
+        return view('admin.posts.edit', compact('post', 'tags', 'selected_ids', 'categories'));
     }
 
     /**
