@@ -17,13 +17,16 @@
                <div class="card-body bg-secondary">
                   <div class="row">
                      @foreach ($tag->posts as $post)
-                        <div class="col">
-                           <div class="card my-3 text-white border-dark" style="width: 18rem;">
+                        <div class="col-4">
+                           <div class="card my-3 text-white border-dark">
                               {{-- TITLE --}}
                               <div class="card-header bg-dark">
                                  <h5 class="card-title">{{ $post->title }}</h5>
                               </div>
-                              <img class="card-img-top" src="{{ $post->img }}" alt="{{ $post->slug }}">
+                              @if ($post->img)
+                                 <img class="card-img-top" src="{{ asset('storage/' . $post->img) }}"
+                                    alt="{{ $post->slug }}">
+                              @endif
                               {{-- CONTENT --}}
                               <div class="card-body bg-secondary">
                                  <p class="card-text">{{ $post->trunText(75) }}</p>
