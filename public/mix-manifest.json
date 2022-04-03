@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/css/style.css": "/css/style.css",
+    "/resources/views/vendor/mail/html/themes/custom.css": "/resources/views/vendor/mail/html/themes/custom.css",
     "/js/front.js": "/js/front.js"
 }

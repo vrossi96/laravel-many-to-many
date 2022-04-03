@@ -43,6 +43,6 @@ class Post extends Model
     public function itaDate()
     {
         // return Carbon::createFromFormat('d-m-Y', $this->updated_at);
-        return Carbon::create($this->updated_at)->format('d-m-Y');
+        return Carbon::create($this->updated_at)->format('d-F-Y');
     }
 }

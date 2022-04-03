@@ -42,7 +42,7 @@
                         <a href="{{ route('admin.posts.index') }}" class="btn btn-primary btn-sm">Go to the posts
                            list</a>
                         {{-- EDIT --}}
-                        <a class="btn btn-secondary btn-sm" href="{{ route('admin.posts.edit', $post->id) }}">
+                        <a class="btn btn-warning btn-sm" href="{{ route('admin.posts.edit', $post->id) }}">
                            <i class="fa-solid fa-pen-to-square"></i>
                         </a>
                      </div>

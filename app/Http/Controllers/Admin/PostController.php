@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Mail\CreatedPostMail;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Env;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -71,10 +74,16 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title, '-');
 
         $post->save();
+
         // Prende l'array di id dei tag e li associa
         if (array_key_exists('tags', $data)) {
             $post->tags()->attach($data['tags']);
         }
+
+        // Spedire una mail alla creazione del post
+        $mail = new CreatedPostMail($post);
+        $reciever = Auth::user()->email;
+        Mail::to($reciever)->send($mail);
 
         return redirect()->route('admin.posts.show', $post);
     }

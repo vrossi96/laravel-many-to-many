@@ -29,7 +29,7 @@ class PostSeeder extends Seeder
 
         for ($i = 0; $i < 25; $i++) {
             $post = new Post();
-            $post->title = $faker->sentence(3);
+            $post->title = $faker->sentence(2);
             $post->content = $faker->paragraph();
             // $post->img = $faker->imageUrl(480, 360, 'animals', true); Non utile dal momento che si caricano immagini
             $post->slug = Str::slug($post->title, '-');

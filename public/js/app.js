@@ -37356,6 +37356,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/sass/mail/custom.scss":
+/*!*****************************************!*\
+  !*** ./resources/sass/mail/custom.scss ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/style.scss":
 /*!***********************************!*\
   !*** ./resources/sass/style.scss ***!
@@ -37368,15 +37379,16 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ***!
-  \*****************************************************************************************/
+/*!***************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/style.scss ./resources/sass/mail/custom.scss ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\Vasco Rossi\Documents\Boolean\Laravel\laravel-many-to-many\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\Users\Vasco Rossi\Documents\Boolean\Laravel\laravel-many-to-many\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Vasco Rossi\Documents\Boolean\Laravel\laravel-many-to-many\resources\sass\style.scss */"./resources/sass/style.scss");
+__webpack_require__(/*! C:\Users\Vasco Rossi\Documents\Boolean\Laravel\laravel-many-to-many\resources\sass\style.scss */"./resources/sass/style.scss");
+module.exports = __webpack_require__(/*! C:\Users\Vasco Rossi\Documents\Boolean\Laravel\laravel-many-to-many\resources\sass\mail\custom.scss */"./resources/sass/mail/custom.scss");
 
 
 /***/ })
